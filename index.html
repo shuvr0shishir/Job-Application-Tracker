@@ -24,25 +24,31 @@
         * {
             font-family: "Geist", sans-serif;
         }
+
+        @media screen and (min-width: 768px) {
+            .container {
+                max-width: 70%;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-[#F8FAFC] min-h-screen ">
+<body class="min-h-screen bg-[#F8FAFC] ">
     <header>
-        <section class="container mx-auto pt-15 pb-7.5 border-b-2 border-[#E6E7E9]">
+        <section class="container mx-auto pt-7.5 md:pt-15 pb-7.5 border-b-2 border-[#E6E7E9]">
             <h1 class="font-bold text-[32px] text-[#002C5C] pb-5 ">Job Application Tracker</h1>
 
             <!-- Count cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="card bg-white rounded-lg  p-5">
+                <div class="count-card bg-white rounded-lg  p-5">
                     <p class="text-[#323B49] pb-2 text-sm font-medium">Total</p>
                     <h2 class="text-[#002C5C] text-2xl font-bold">8</h2>
                 </div>
-                <div class="card bg-white rounded-lg  p-5">
+                <div class="count-card bg-white rounded-lg  p-5">
                     <p class="text-[#323B49] pb-2 text-sm font-medium">Interview</p>
                     <h2 class="text-[#10B981] text-2xl font-bold">0</h2>
                 </div>
-                <div class="card bg-white rounded-lg  p-5">
+                <div class="count-card bg-white rounded-lg  p-5">
                     <p class="text-[#323B49] pb-2 text-sm font-medium">Rejected</p>
                     <h2 class="text-[#EF4444] text-2xl font-bold">0</h2>
                 </div>
@@ -50,17 +56,373 @@
         </section>
     </header>
 
-    <main>
+    <main class="pb-7.5 md:pb-15">
+        <!-- Available Jobs -->
         <section class="container mx-auto py-7.5 flex justify-between">
             <h2 class="text-[#002C5C] font-semibold text-xl">Available Jobs</h2>
-            <p class="text-[#323B49] font-medium"><span id="totalJobsCount" ">8</span> Jobs</p>
+            <p class="text-[#64748B] font-medium"><span id="totalJobsCount" ">8</span> Jobs</p>
         </section>
 
-        <!-- buttons -->
-        <section class="container mx-auto flex gap-2">
-            <button class="btn w-20 h-8 text-[12px] font-semibold bg-[#3B82F6] text-white">All</button>
-            <button class="btn w-20 h-8 text-[12px] font-medium bg-white text-[#64748B]">Interview</button>
-            <button class="btn w-20 h-8 text-[12px] font-medium bg-white text-[#64748B]">Rejected</button>
+        <!--Tab buttons -->
+        <section class=" container mx-auto flex gap-2">
+                    <button class="btn w-20 h-8 text-[12px] font-semibold btn-info shadow-none text-white">All</button>
+                    <button
+                        class="btn w-20 h-8 text-[12px] font-medium bg-white shadow-none text-[#64748B]">Interview</button>
+                    <button
+                        class="btn w-20 h-8 text-[12px] font-medium bg-white shadow-none text-[#64748B]">Rejected</button>
+        </section>
+
+        <!-- All Applications -->
+        <section class="container mx-auto pt-4 space-y-4 ">
+
+            <!-- application card 1 -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card 2 -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">WebFlow Agency</h2>
+                        <h3 class="text-[#64748B] ">Web Designer & Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Los Angeles, CA
+                        •
+                        Part-time
+                        •
+                        $80,000 - $120,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Create stunning web experiences for high-profile clients. Must
+                        have portfolio and experience with modern web design trends.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card 3 -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">DataViz Solutions</h2>
+                        <h3 class="text-[#64748B] ">Data Visualization Specialist</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Boston, MA
+                        •
+                        Full-time
+                        •
+                        $125,000 - $165,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Transform complex data into compelling visualizations. Required
+                        skills: D3.js, React, and strong analytical thinking.
+                    </p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- application card -->
+            <div id="application-card" class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="text-[#64748B] py-5">
+                    <p>Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                </div>
+
+                <!-- badge -->
+                <div class="h-9 badge badge-soft badge-primary text-[#002C5C] text-[14px] font-medium ">NOT APPLIED
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native. Work
+                        on products used by millions of users worldwide.</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- No jobs available page -->
+        <section class="container mx-auto rounded-lg bg-white h-[400px] mt-4 flex justify-center items-center">
+            <div class="text-center">
+                <div class="h-[100px] w-[100px] mb-5 mx-auto">
+                    <img class="" src="./images/jobs.png" alt="" >
+                </div>
+                <h2 class="text-[#002C5C] text-2xl font-semibold">No jobs available</h2>
+                <p class="text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
         </section>
     </main>
 
