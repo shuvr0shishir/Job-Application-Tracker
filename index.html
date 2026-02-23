@@ -32,6 +32,7 @@
         <section class="container mx-auto pt-15 pb-7.5 border-b-2 border-[#E6E7E9]">
             <h1 class="font-bold text-[32px] text-[#002C5C] pb-5 ">Job Application Tracker</h1>
 
+            <!-- Count cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="card bg-white rounded-lg  p-5">
                     <p class="text-[#323B49] pb-2 text-sm font-medium">Total</p>
@@ -49,6 +50,19 @@
         </section>
     </header>
 
+    <main>
+        <section class="container mx-auto py-7.5 flex justify-between">
+            <h2 class="text-[#002C5C] font-semibold text-xl">Available Jobs</h2>
+            <p class="text-[#323B49] font-medium"><span id="totalJobsCount" ">8</span> Jobs</p>
+        </section>
+
+        <!-- buttons -->
+        <section class="container mx-auto flex gap-2">
+            <button class="btn w-20 h-8 text-[12px] font-semibold bg-[#3B82F6] text-white">All</button>
+            <button class="btn w-20 h-8 text-[12px] font-medium bg-white text-[#64748B]">Interview</button>
+            <button class="btn w-20 h-8 text-[12px] font-medium bg-white text-[#64748B]">Rejected</button>
+        </section>
+    </main>
 
 
     <script src="./script.js"></script>
