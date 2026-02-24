@@ -81,7 +81,7 @@
         </section>
 
         <!-- No jobs available page -->
-        <section id="nothing-page" class="hidden">
+        <section id="nothing-container" class="hidden">
             <div class="container mx-auto rounded-lg bg-white h-[400px] mt-4 flex justify-center items-center">
                 <div class="text-center">
                     <div class="h-[100px] w-[100px] mb-5 mx-auto">
@@ -92,31 +92,30 @@
                 </div>
             </div>
         </section>
-
-        <section id="filtered-container" class="container mx-auto pt-4 space-y-4 ">
-
-        </section>
+        
+        <!-- filtered container -->
+        <section id="filtered-container" class="hidden container mx-auto pt-4 space-y-4 "></section>
 
         <!-- all application container -->
         <section id="all-applications" class="container mx-auto pt-4 space-y-4 ">
-            <!-- applicant card  -->
+            <!-- applicant card 1 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
-                        <h3 class="text-[#64748B] ">React Native Developer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">Mobile First Corp</h2>
+                        <h3 class="position text-[#64748B] ">React Native Developer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(1)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Remote
                         •
                         Full-time
@@ -125,42 +124,41 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Build cross-platform mobile applications using React Native.
+                    <p class="description text-sm text-[#323B49]">Build cross-platform mobile applications using React
+                        Native.
                         Work on products used by millions of users worldwide.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(1)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(1)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 2 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">WebFlow Agency</h2>
-                        <h3 class="text-[#64748B] ">Web Designer &amp; Developer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">WebFlow Agency</h2>
+                        <h3 class="position text-[#64748B] ">Web Designer &amp; Developer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(2)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Los Angeles, CA
                         •
                         Part-time
@@ -169,42 +167,41 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Create stunning web experiences for high-profile clients. Must
+                    <p class="description text-sm text-[#323B49]">Create stunning web experiences for high-profile
+                        clients. Must
                         have portfolio and experience with modern web design trends.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(2)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(2)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 3 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">DataViz Solutions</h2>
-                        <h3 class="text-[#64748B] ">Data Visualization Specialist</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">DataViz Solutions</h2>
+                        <h3 class="position text-[#64748B] ">Data Visualization Specialist</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(3)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Boston, MA
                         •
                         Full-time
@@ -213,42 +210,40 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Transform complex data into compelling visualizations.
+                    <p class="description text-sm text-[#323B49]">Transform complex data into compelling visualizations.
                         Required skills: D3.js, React, and strong analytical thinking.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(3)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(3)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 4 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">CloudFirst Inc</h2>
-                        <h3 class="text-[#64748B] ">Backend Developer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">CloudFirst Inc</h2>
+                        <h3 class="position text-[#64748B] ">Backend Developer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(4)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Seattle, WA
                         •
                         Full-time
@@ -257,42 +252,41 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Design and maintain scalable backend systems using Python and
+                    <p class="description text-sm text-[#323B49]">Design and maintain scalable backend systems using
+                        Python and
                         AWS. Work with modern DevOps practices and cloud infrastructure.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(4)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(4)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 5 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">Innovation Labs</h2>
-                        <h3 class="text-[#64748B] ">UI/UX Engineer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">Innovation Labs</h2>
+                        <h3 class="position text-[#64748B] ">UI/UX Engineer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(5)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Austin, TX
                         •
                         Full-time
@@ -301,42 +295,41 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Create beautiful and functional user interfaces for our suite
+                    <p class="description text-sm text-[#323B49]">Create beautiful and functional user interfaces for
+                        our suite
                         of products. Strong design skills and frontend development expertise required.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(5)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(5)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 6 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">MegaCorp Solutions</h2>
-                        <h3 class="text-[#64748B] ">JavaScript Developer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">MegaCorp Solutions</h2>
+                        <h3 class="position text-[#64748B] ">JavaScript Developer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(6)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>New York, NY
                         •
                         Full-time
@@ -345,43 +338,42 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Build enterprise applications with JavaScript and modern
+                    <p class="description text-sm text-[#323B49]">Build enterprise applications with JavaScript and
+                        modern
                         frameworks. We offer competitive compensation, health insurance, and professional
                         development opportunities.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(6)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(6)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 7 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">StartupXYZ</h2>
-                        <h3 class="text-[#64748B] ">Full Stack Engineer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">StartupXYZ</h2>
+                        <h3 class="position text-[#64748B] ">Full Stack Engineer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(7)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>Remote
                         •
                         Full-time
@@ -390,42 +382,41 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">Join our fast-growing startup and work on our core platform.
+                    <p class="description text-sm text-[#323B49]">Join our fast-growing startup and work on our core
+                        platform.
                         Experience with Node.js and React required. Great benefits and equity package included.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(7)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(7)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
 
-            <!-- applicant card  -->
+            <!-- applicant card 8 -->
             <div class="bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
                     <div class="space-y-1">
-                        <h2 class="text-[#002C5C] text-[18px] font-semibold">TechCorp Industries</h2>
-                        <h3 class="text-[#64748B] ">Senior Frontend Developer</h3>
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">TechCorp Industries</h2>
+                        <h3 class="position text-[#64748B] ">Senior Frontend Developer</h3>
                     </div>
 
                     <!-- delete btn -->
-                    <button onclick="deleteCard(8)" class="btn btn-circle w-8 h-8">
+                    <button class="btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
 
                 <!-- location + type + salary -->
-                <div class="text-[#64748B] py-5">
+                <div class="lts text-[#64748B] py-5">
                     <p>San Francisco, CA
                         •
                         Full-time
@@ -434,22 +425,21 @@
                 </div>
 
                 <!-- badge -->
-                <div class=" badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
+                <div class="badge h-9 text-[14px] font-medium bg-[#EEF4FF] text-[#002C5C]">NOT APPLIED
                 </div>
 
                 <!-- description -->
                 <div class="pt-2">
-                    <p class="text-sm text-[#323B49]">We are looking for an experienced Frontend Developer to build
+                    <p class="description text-sm text-[#323B49]">We are looking for an experienced Frontend Developer
+                        to build
                         scalable web applications using React and TypeScript. You will work with a talented team on
                         cutting-edge projects.</p>
                 </div>
 
                 <!-- 2 buttons: Interview, Rejected -->
                 <div class="flex gap-2 pt-5">
-                    <button onclick="clickInterview(8)"
-                        class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
-                    <button onclick="clickRejected(8)"
-                        class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
                 </div>
             </div>
         </section>
@@ -458,7 +448,6 @@
 
 
     <!-- link external js file -->
-    <script src="./scripts/machine.js"></script>
     <script src="./scripts/script.js"></script>
 </body>
 

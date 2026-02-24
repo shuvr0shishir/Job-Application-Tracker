@@ -1,18 +1,43 @@
+// Useful Functions
+function getElement(parameter) {
+    const input = document.querySelector(parameter);
+    return input;
+};
+
+
 // interview + reject array
 let interviewList = [];
 let rejectedList = [];
 
+
+// current tab
+let currentTab = '#all-tab';
 
 // Count elements
 let allCount = getElement('#all-count');
 let interviewCount = getElement('#interview-count');
 let rejectedCount = getElement('#rejected-count');
 
-// all applicants container
-const allApplications = getElement('#all-applications');
 
 // main container
 const mainContainer = getElement('main');
+
+// nothing container
+const nothingContainer = getElement('#nothing-container');
+
+// filtered container
+const filteredContainer = getElement('#filtered-container');
+
+
+// all applicants container
+const allApplications = getElement('#all-applications');
+
+
+// tabJobsCount
+const tabJobsEle = getElement('#tabJobsCount');
+let tabJobsCount = allApplications.children.length;
+tabJobsEle.innerText = tabJobsCount;
+
 
 
 
@@ -25,6 +50,8 @@ updateDash();
 
 // toggle function
 function tabSwitch(id) {
+    currentTab = id;
+
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
         tab.classList.add("bg-white", "text-[#64748B]");  //add default to all
@@ -33,7 +60,236 @@ function tabSwitch(id) {
 
     getElement(id).classList.remove("bg-white", "text-[#64748B]"); //remove default from selected 
     getElement(id).classList.add("bg-[#3B82F6]", "text-white"); //add accent to selected
+
+    if (currentTab == '#all-tab') {
+        tabJobsCount = allApplications.children.length;
+        tabJobsEle.innerText = tabJobsCount;
+        updateDash();
+
+        if (tabJobsCount === 0) {
+            allApplications.classList.add('hidden');
+            filteredContainer.classList.add('hidden');
+            nothingContainer.classList.remove('hidden');
+        } else {
+            nothingContainer.classList.add('hidden');
+            filteredContainer.classList.add('hidden');
+            allApplications.classList.remove('hidden');
+        }
+
+    }
+    else if (currentTab == '#interview-tab') {
+        tabJobsCount = filteredContainer.children.length;
+        tabJobsEle.innerText = tabJobsCount;
+        updateDash();
+
+        if (tabJobsCount === 0) {
+            allApplications.classList.add('hidden');
+            filteredContainer.classList.add('hidden');
+            nothingContainer.classList.remove('hidden');
+        } else {
+            allApplications.classList.add('hidden');
+            nothingContainer.classList.add('hidden');
+            filteredContainer.classList.remove('hidden');
+        }
+
+    }
+    else if (currentTab == '#rejected-tab') {
+        tabJobsCount = filteredContainer.children.length;
+        tabJobsEle.innerText = tabJobsCount;
+        updateDash();
+
+
+        if (tabJobsCount === 0) {
+            allApplications.classList.add('hidden');
+            filteredContainer.classList.add('hidden');
+            getElement('#nothing-page').classList.remove('hidden');
+        } else {
+            allApplications.classList.add('hidden');
+            filteredContainer.classList.remove('hidden');
+        }
+    }
 };
 
 
+// Event listeners 
+mainContainer.addEventListener("click", (event) => {
 
+    if (event.target.classList.contains('interview-btn')) {
+        const parentNode = event.target.parentNode.parentNode;
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const lts = parentNode.querySelector('.lts').innerText;
+        const description = parentNode.querySelector('.description').innerText;
+
+        const cardInfo = {
+            companyName,
+            position,
+            lts,
+            status: "INTERVIEW",
+            description,
+        }
+
+
+        const isExist = interviewList.find(item => item.companyName == cardInfo.companyName);
+
+
+        const status = parentNode.querySelector('.badge');
+        status.innerText = "INTERVIEW";
+
+
+        if (status.classList.contains('bg-[#EEF4FF]')) {
+            status.classList.remove('bg-[#EEF4FF]', 'text-[#002C5C]')
+            status.classList.add('bg-[#36d399]', 'text-[#ffffff]')
+        } else if (status.classList.contains('bg-[#f87272]')) {
+            status.classList.remove('bg-[#f87272]')
+            status.classList.add('bg-[#36d399]', 'text-[#ffffff]')
+        }
+
+        if (!isExist) {
+            interviewList.push(cardInfo);
+        }
+
+        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+
+        updateDash();
+        renderInterview();
+    }
+    else if (event.target.classList.contains('rejected-btn')) {
+        const parentNode = event.target.parentNode.parentNode;
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const lts = parentNode.querySelector('.lts').innerText;
+        const description = parentNode.querySelector('.description').innerText;
+
+        const cardInfo = {
+            companyName,
+            position,
+            lts,
+            status: "REJECTED",
+            description,
+        }
+
+
+        const isExist = rejectedList.find(item => item.companyName == cardInfo.companyName);
+
+
+        const status = parentNode.querySelector('.badge');
+        status.innerText = "REJECTED";
+
+
+        if (status.classList.contains('bg-[#EEF4FF]')) {
+            status.classList.remove('bg-[#EEF4FF]', 'text-[#002C5C]')
+            status.classList.add('bg-[#f87272]', 'text-[#ffffff]')
+        } else if (status.classList.contains('bg-[#36d399]')) {
+            status.classList.remove('bg-[#36d399]')
+            status.classList.add('bg-[#f87272]', 'text-[#ffffff]')
+        }
+
+        if (!isExist) {
+            rejectedList.push(cardInfo);
+        }
+
+        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
+
+        updateDash();
+        renderRejected();
+    }
+
+});
+
+function renderInterview() {
+    filteredContainer.innerHtml = '';
+
+    interviewList.forEach(item => {
+        let div = document.createElement('div');
+        div.innerHTML = `
+        <!-- interview card -->
+        <div class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">${item.companyName}</h2>
+                        <h3 class="position text-[#64748B] ">${item.position}</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="lts text-[#64748B] py-5">
+                    <p>${item.lts}</p>
+                </div>
+
+                <!-- badge -->
+                <div class="badge h-9 text-[14px] font-medium bg-[#36d399] text-[#ffffff]">${item.status}
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="description text-sm text-[#323B49]">${item.description}</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+        `;
+
+        filteredContainer.appendChild(div);
+    })
+};
+
+
+function renderRejected() {
+    filteredContainer.innerHtml = '';
+
+    rejectedList.forEach(item => {
+        let div = document.createElement('div');
+        div.innerHTML = `
+        <!-- interview card -->
+        <div class="bg-white p-6 rounded-lg">
+                <div class="flex justify-between items-center">
+
+                    <!-- company name + position -->
+                    <div class="space-y-1">
+                        <h2 class="companyName text-[#002C5C] text-[18px] font-semibold">${item.companyName}</h2>
+                        <h3 class="position text-[#64748B] ">${item.position}</h3>
+                    </div>
+
+                    <!-- delete btn -->
+                    <button class="btn btn-circle w-8 h-8">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+                <!-- location + type + salary -->
+                <div class="lts text-[#64748B] py-5">
+                    <p>${item.lts}</p>
+                </div>
+
+                <!-- badge -->
+                <div class="badge h-9 text-[14px] font-medium bg-[#f87272] text-[#ffffff]">${item.status}
+                </div>
+
+                <!-- description -->
+                <div class="pt-2">
+                    <p class="description text-sm text-[#323B49]">${item.description}</p>
+                </div>
+
+                <!-- 2 buttons: Interview, Rejected -->
+                <div class="flex gap-2 pt-5">
+                    <button class="interview-btn btn btn-outline btn-success h-9">INTERVIEW</button>
+                    <button class="rejected-btn btn btn-outline btn-error h-9">REJECTED</button>
+                </div>
+            </div>
+        `;
+
+        filteredContainer.appendChild(div);
+    })
+};
