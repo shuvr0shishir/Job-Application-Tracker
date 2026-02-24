@@ -155,11 +155,13 @@ mainContainer.addEventListener("click", (event) => {
             status.classList.add('bg-[#36d399]', 'text-[#ffffff]')
         }
 
+        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+
         if (!isExist) {
             interviewList.push(cardInfo);
         }
 
-        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+
 
         if (currentTab == '#rejected-tab') {
             renderRejected();
@@ -213,11 +215,11 @@ mainContainer.addEventListener("click", (event) => {
             status.classList.add('bg-[#f87272]', 'text-[#ffffff]')
         }
 
+        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
+
         if (!isExist) {
             rejectedList.push(cardInfo);
         }
-
-        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
 
         if (currentTab == '#interview-tab') {
             renderInterview();
@@ -240,7 +242,6 @@ mainContainer.addEventListener("click", (event) => {
         updateDash();
         renderRejected();
     }
-
 });
 
 function renderInterview() {
