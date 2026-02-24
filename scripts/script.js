@@ -25,8 +25,11 @@ const mainContainer = getElement('main');
 // nothing container
 const nothingContainer = getElement('#nothing-container');
 
-// filtered container
-const filteredContainer = getElement('#filtered-container');
+// interview container
+const interviewContainer = getElement('#interview-container');
+
+// reject container
+const rejectContainer = getElement('#reject-container');
 
 
 // all applicants container
@@ -68,44 +71,51 @@ function tabSwitch(id) {
 
         if (tabJobsCount === 0) {
             allApplications.classList.add('hidden');
-            filteredContainer.classList.add('hidden');
+            interviewContainer.classList.add('hidden');
+            rejectContainer.classList.add('hidden');
             nothingContainer.classList.remove('hidden');
         } else {
             nothingContainer.classList.add('hidden');
-            filteredContainer.classList.add('hidden');
+            interviewContainer.classList.add('hidden');
+            rejectContainer.classList.add('hidden');
             allApplications.classList.remove('hidden');
         }
 
     }
     else if (currentTab == '#interview-tab') {
-        tabJobsCount = filteredContainer.children.length;
+        tabJobsCount = interviewContainer.children.length;
         tabJobsEle.innerText = tabJobsCount;
         updateDash();
 
         if (tabJobsCount === 0) {
             allApplications.classList.add('hidden');
-            filteredContainer.classList.add('hidden');
+            interviewContainer.classList.add('hidden');
+            rejectContainer.classList.add('hidden');
             nothingContainer.classList.remove('hidden');
         } else {
             allApplications.classList.add('hidden');
             nothingContainer.classList.add('hidden');
-            filteredContainer.classList.remove('hidden');
+            rejectContainer.classList.add('hidden');
+            interviewContainer.classList.remove('hidden');
         }
 
     }
     else if (currentTab == '#rejected-tab') {
-        tabJobsCount = filteredContainer.children.length;
+        tabJobsCount = rejectContainer.children.length;
         tabJobsEle.innerText = tabJobsCount;
         updateDash();
 
 
         if (tabJobsCount === 0) {
             allApplications.classList.add('hidden');
-            filteredContainer.classList.add('hidden');
-            getElement('#nothing-page').classList.remove('hidden');
+            interviewContainer.classList.add('hidden');
+            rejectContainer.classList.add('hidden');
+            nothingContainer.classList.remove('hidden');
         } else {
             allApplications.classList.add('hidden');
-            filteredContainer.classList.remove('hidden');
+            nothingContainer.classList.add('hidden');
+            interviewContainer.classList.add('hidden');
+            rejectContainer.classList.remove('hidden');
         }
     }
 };
@@ -151,6 +161,24 @@ mainContainer.addEventListener("click", (event) => {
 
         rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
 
+        if (currentTab == '#rejected-tab') {
+            renderRejected();
+            tabJobsCount = rejectContainer.children.length;
+            tabJobsEle.innerText = tabJobsCount;
+            updateDash();
+
+            if (tabJobsCount === 0) {
+                allApplications.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                nothingContainer.classList.remove('hidden');
+            } else {
+                allApplications.classList.add('hidden');
+                nothingContainer.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.remove('hidden');
+            }
+        }
         updateDash();
         renderInterview();
     }
@@ -191,6 +219,24 @@ mainContainer.addEventListener("click", (event) => {
 
         interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
 
+        if (currentTab == '#interview-tab') {
+            renderInterview();
+            tabJobsCount = interviewContainer.children.length;
+            tabJobsEle.innerText = tabJobsCount;
+            updateDash();
+
+            if (tabJobsCount === 0) {
+                allApplications.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                nothingContainer.classList.remove('hidden');
+            } else {
+                allApplications.classList.add('hidden');
+                nothingContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                interviewContainer.classList.remove('hidden');
+            }
+        }
         updateDash();
         renderRejected();
     }
@@ -198,7 +244,7 @@ mainContainer.addEventListener("click", (event) => {
 });
 
 function renderInterview() {
-    filteredContainer.innerHtml = '';
+    interviewContainer.innerHTML = '';
 
     interviewList.forEach(item => {
         let div = document.createElement('div');
@@ -241,13 +287,13 @@ function renderInterview() {
             </div>
         `;
 
-        filteredContainer.appendChild(div);
+        interviewContainer.appendChild(div);
     })
 };
 
 
 function renderRejected() {
-    filteredContainer.innerHtml = '';
+    rejectContainer.innerHTML = '';
 
     rejectedList.forEach(item => {
         let div = document.createElement('div');
@@ -290,6 +336,6 @@ function renderRejected() {
             </div>
         `;
 
-        filteredContainer.appendChild(div);
+        rejectContainer.appendChild(div);
     })
 };
