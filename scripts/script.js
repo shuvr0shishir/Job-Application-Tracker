@@ -242,6 +242,62 @@ mainContainer.addEventListener("click", (event) => {
         updateDash();
         renderRejected();
     }
+    else if (event.target.closest('.dlt-btn')) {
+        const parentNode = event.target.closest('.applicant-card');
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        
+        // dlt and update array list of interview and rejected
+        interviewList = interviewList.filter(item => item.companyName != companyName);
+        rejectedList = rejectedList.filter(item => item.companyName != companyName);
+
+        // all company name check if match then remove
+        const allCards = document.querySelectorAll('.companyName');
+        allCards.forEach(name => {
+            if (name.innerText == companyName) {
+                name.closest('.applicant-card').remove();
+            }
+        });
+
+        // update dash and array list
+        updateDash();
+        renderInterview();
+        renderRejected();
+
+        // tab job count update and nothing page if 0 job
+        if (currentTab == '#all-tab') {
+            tabJobsCount = allApplications.children.length;
+            tabJobsEle.innerText = tabJobsCount;
+
+            if (tabJobsCount === 0) {
+                allApplications.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                nothingContainer.classList.remove('hidden');
+            }
+        }
+        else if (currentTab == '#interview-tab') {
+            tabJobsCount = interviewList.length;
+            tabJobsEle.innerText = tabJobsCount;
+
+            if (tabJobsCount === 0) {
+                allApplications.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                nothingContainer.classList.remove('hidden');
+            }
+        }
+        else if (currentTab == '#rejected-tab') {
+            tabJobsCount = rejectedList.length;
+            tabJobsEle.innerText = tabJobsCount;
+
+            if (tabJobsCount === 0) {
+                allApplications.classList.add('hidden');
+                interviewContainer.classList.add('hidden');
+                rejectContainer.classList.add('hidden');
+                nothingContainer.classList.remove('hidden');
+            }
+        }
+    }
 });
 
 function renderInterview() {
@@ -251,7 +307,7 @@ function renderInterview() {
         let div = document.createElement('div');
         div.innerHTML = `
         <!-- interview card -->
-        <div class="bg-white p-6 rounded-lg">
+        <div class="applicant-card bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
@@ -261,7 +317,7 @@ function renderInterview() {
                     </div>
 
                     <!-- delete btn -->
-                    <button class="btn btn-circle w-8 h-8">
+                    <button class="dlt-btn btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
@@ -300,7 +356,7 @@ function renderRejected() {
         let div = document.createElement('div');
         div.innerHTML = `
         <!-- interview card -->
-        <div class="bg-white p-6 rounded-lg">
+        <div class="applicant-card bg-white p-6 rounded-lg">
                 <div class="flex justify-between items-center">
 
                     <!-- company name + position -->
@@ -310,7 +366,7 @@ function renderRejected() {
                     </div>
 
                     <!-- delete btn -->
-                    <button class="btn btn-circle w-8 h-8">
+                    <button class="dlt-btn btn btn-circle w-8 h-8">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
