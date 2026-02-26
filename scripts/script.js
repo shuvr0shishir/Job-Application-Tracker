@@ -43,7 +43,7 @@ tabJobsEle.innerText = tabJobsCount;
 
 
 
-
+// update main dashboard
 function updateDash() {
     allCount.innerText = allApplications.children.length;
     interviewCount.innerText = interviewList.length;
@@ -51,7 +51,7 @@ function updateDash() {
 };
 updateDash();
 
-// toggle function
+// tab toggle function
 function tabSwitch(id) {
     currentTab = id;
 
@@ -124,6 +124,7 @@ function tabSwitch(id) {
 // Event listeners 
 mainContainer.addEventListener("click", (event) => {
 
+    // interview button fire
     if (event.target.classList.contains('interview-btn')) {
         const parentNode = event.target.parentNode.parentNode;
         const companyName = parentNode.querySelector('.companyName').innerText;
@@ -131,6 +132,7 @@ mainContainer.addEventListener("click", (event) => {
         const lts = parentNode.querySelector('.lts').innerText;
         const description = parentNode.querySelector('.description').innerText;
 
+        // making card object
         const cardInfo = {
             companyName,
             position,
@@ -139,30 +141,32 @@ mainContainer.addEventListener("click", (event) => {
             description,
         }
 
+        //badge modification
+        const allCards = document.querySelectorAll('.applicant-card');
+        allCards.forEach(card => {
+            const allNames = card.querySelector('.companyName').innerText;
 
-        const isExist = interviewList.find(item => item.companyName == cardInfo.companyName);
+            if (allNames == companyName) {
+                const status = card.querySelector('.badge');
+                status.innerText = "INTERVIEW";
 
+                status.classList.remove('bg-[#EEF4FF]', 'bg-[#f87272]', 'text-[#002C5C]');
+                status.classList.add('bg-[#36d399]', 'text-white');
+            }
+        });
 
-        const status = parentNode.querySelector('.badge');
-        status.innerText = "INTERVIEW";
+        // reject list theke remove
+        rejectedList = rejectedList.filter(item => item.companyName != companyName);
 
+        // already ache kina test 
+        const isExist = interviewList.find(item => item.companyName == companyName);
 
-        if (status.classList.contains('bg-[#EEF4FF]')) {
-            status.classList.remove('bg-[#EEF4FF]', 'text-[#002C5C]')
-            status.classList.add('bg-[#36d399]', 'text-[#ffffff]')
-        } else if (status.classList.contains('bg-[#f87272]')) {
-            status.classList.remove('bg-[#f87272]')
-            status.classList.add('bg-[#36d399]', 'text-[#ffffff]')
-        }
-
-        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
-
+        // jodi exist na kore tahole push
         if (!isExist) {
             interviewList.push(cardInfo);
         }
 
-
-
+        // tab count update + if o then nothing page
         if (currentTab == '#rejected-tab') {
             renderRejected();
             tabJobsCount = rejectContainer.children.length;
@@ -181,9 +185,13 @@ mainContainer.addEventListener("click", (event) => {
                 rejectContainer.classList.remove('hidden');
             }
         }
+
+        // update dashboard + interview tab a card generate
         updateDash();
         renderInterview();
     }
+
+    // rejected button fire
     else if (event.target.classList.contains('rejected-btn')) {
         const parentNode = event.target.parentNode.parentNode;
         const companyName = parentNode.querySelector('.companyName').innerText;
@@ -191,6 +199,7 @@ mainContainer.addEventListener("click", (event) => {
         const lts = parentNode.querySelector('.lts').innerText;
         const description = parentNode.querySelector('.description').innerText;
 
+        // making card object
         const cardInfo = {
             companyName,
             position,
@@ -199,28 +208,32 @@ mainContainer.addEventListener("click", (event) => {
             description,
         }
 
+        //badge modification
+        const allCards = document.querySelectorAll('.applicant-card');
+        allCards.forEach(card => {
+            const allNames = card.querySelector('.companyName').innerText;
 
-        const isExist = rejectedList.find(item => item.companyName == cardInfo.companyName);
+            if (allNames == companyName) {
+                const status = card.querySelector('.badge');
+                status.innerText = "REJECTED";
 
+                status.classList.remove('bg-[#EEF4FF]', 'bg-[#36d399]', 'text-[#002C5C]');
+                status.classList.add('bg-[#f87272]', 'text-white');
+            }
+        });
 
-        const status = parentNode.querySelector('.badge');
-        status.innerText = "REJECTED";
+        // interview list theke remove
+        interviewList = interviewList.filter(item => item.companyName != companyName);
 
+        // already ache kina test 
+        const isExist = rejectedList.find(item => item.companyName == companyName);
 
-        if (status.classList.contains('bg-[#EEF4FF]')) {
-            status.classList.remove('bg-[#EEF4FF]', 'text-[#002C5C]')
-            status.classList.add('bg-[#f87272]', 'text-[#ffffff]')
-        } else if (status.classList.contains('bg-[#36d399]')) {
-            status.classList.remove('bg-[#36d399]')
-            status.classList.add('bg-[#f87272]', 'text-[#ffffff]')
-        }
-
-        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
-
+        // jodi exist na kore tahole push
         if (!isExist) {
             rejectedList.push(cardInfo);
         }
 
+        // tab count update + if o then nothing page
         if (currentTab == '#interview-tab') {
             renderInterview();
             tabJobsCount = interviewContainer.children.length;
@@ -239,13 +252,17 @@ mainContainer.addEventListener("click", (event) => {
                 interviewContainer.classList.remove('hidden');
             }
         }
+
+        // update dashboard + rejected tab a card generate
         updateDash();
         renderRejected();
     }
+
+    // delete button fire
     else if (event.target.closest('.dlt-btn')) {
         const parentNode = event.target.closest('.applicant-card');
         const companyName = parentNode.querySelector('.companyName').innerText;
-        
+
         // dlt and update array list of interview and rejected
         interviewList = interviewList.filter(item => item.companyName != companyName);
         rejectedList = rejectedList.filter(item => item.companyName != companyName);
@@ -298,9 +315,12 @@ mainContainer.addEventListener("click", (event) => {
             }
         }
     }
+    
 });
 
+// interview container a card generate
 function renderInterview() {
+    // old interview container clear 
     interviewContainer.innerHTML = '';
 
     interviewList.forEach(item => {
@@ -343,13 +363,14 @@ function renderInterview() {
                 </div>
             </div>
         `;
-
+        
         interviewContainer.appendChild(div);
     })
 };
 
-
+// reject container a card generate
 function renderRejected() {
+    // old reject container clear
     rejectContainer.innerHTML = '';
 
     rejectedList.forEach(item => {
